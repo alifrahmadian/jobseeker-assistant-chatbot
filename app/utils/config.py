@@ -6,6 +6,11 @@ import os
 
 load_dotenv()
 
+MYSQL_DB_HOST = os.getenv("MYSQL_DB_HOST")
+MYSQL_DB_USER = os.getenv("MYSQL_DB_USER")
+MYSQL_DB_PASSWORD = os.getenv("MYSQL_DB_PASSWORD")
+MYSQL_DB_DATABASE = os.getenv("MYSQL_DB_DATABASE")
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
