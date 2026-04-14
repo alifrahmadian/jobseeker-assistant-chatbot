@@ -1,4 +1,4 @@
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langfuse import get_client
 from dotenv import load_dotenv
 
@@ -16,10 +16,20 @@ LANGFUSE_SECRET_KEY = os.getenv("LANGFUSE_SECRET_KEY")
 LANGFUSE_PUBLIC_KEY = os.getenv("LANGFUSE_PUBLIC_KEY")
 LANGFUSE_BASE_URL = os.getenv("LANGFUSE_BASE_URL")
 
-def load_llm(temperature, model):
+OPENAI_MODEL_NAME = "gpt-4o-mini"
+OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
+
+def load_llm(temperature=0.1, model="gpt-4o-mini"):
     llm = ChatOpenAI(
         model=model,
         temperature=temperature,
-        )
+    )
     
     return llm
+
+def load_embedder(model="text-embedding-3-small"):
+    embedding = OpenAIEmbeddings(
+        model=model,
+    )
+    
+    return embedding
