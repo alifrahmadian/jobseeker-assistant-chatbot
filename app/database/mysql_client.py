@@ -10,7 +10,8 @@ import mysql.connector
 
 def get_connection():
     try:
-        logger.info("Attempting to connect to MySQL database...")
+        logger.debug(f"Connecting to MySQL at {MYSQL_DB_HOST} with user {MYSQL_DB_USER}")
+        logger.debug(f"Using database: {MYSQL_DB_DATABASE}")
         connection = mysql.connector.connect(
             host=MYSQL_DB_HOST,
             user=MYSQL_DB_USER,
