@@ -3,7 +3,29 @@ from app.utils import (
     MYSQL_DB_USER, 
     MYSQL_DB_PASSWORD, 
     MYSQL_DB_DATABASE,
+    logger
 )
 
 import mysql.connector
-import os
+
+def get_connection():
+    try:
+        logger.info("Attempting to connect to MySQL database...")
+        connection = mysql.connector.connect(
+            host=MYSQL_DB_HOST,
+            user=MYSQL_DB_USER,
+            password=MYSQL_DB_PASSWORD,
+            database=MYSQL_DB_DATABASE
+        )
+        
+        logger.info("Successfully connected to MySQL database.")
+        return connection
+    except mysql.connector.Error as err:
+        logger.error(f"Error connecting to MySQL database: {err}")
+        raise
+
+if __name__ == "__main__":
+    connection = get_connection()
+    if connection:
+        print("Connection successful!")
+        connection.close()
