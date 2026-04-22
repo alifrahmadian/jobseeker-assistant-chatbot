@@ -14,4 +14,7 @@ from .config import (
     OPENAI_EMBEDDING_MODEL,
     load_llm,
     load_embedder,
+    langfuse
 )
+
+from .logger import logger
