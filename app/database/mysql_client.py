@@ -25,6 +25,21 @@ def get_connection():
         logger.error(f"Error connecting to MySQL database: {err}")
         raise
 
+def create_tables():
+    pass
+
+def insert_resumes():
+    pass
+
+def insert_skills():
+    pass
+
+def insert_experiences():
+    pass
+
+def insert_educations():
+    pass
+
 if __name__ == "__main__":
     connection = get_connection()
     if connection:
