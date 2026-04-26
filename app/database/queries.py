@@ -33,7 +33,7 @@ CREATE_EDUCATIONS_TABLE = """
         id INT AUTO_INCREMENT PRIMARY KEY,
         resume_id VARCHAR(255) FK,
         degree VARCHAR(255),
-        institution_name VARCHAR(255),
+        institution VARCHAR(255),
         year VARCHAR(10),
         FOREIGN KEY (resume_id) REFERENCES resumes(id)
     )
