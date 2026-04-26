@@ -1,6 +1,7 @@
 langchain
 langchain-openai
 langchain-community
+langchain-qdrant
 langgraph
 langfuse
 qdrant-client
