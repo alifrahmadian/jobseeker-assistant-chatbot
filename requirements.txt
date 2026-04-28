@@ -9,3 +9,4 @@ mysql-connector-python
 python-dotenv
 pandas
 streamlit
+pydantic
