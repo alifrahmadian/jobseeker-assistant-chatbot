@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-
 class Experience(BaseModel):
     job_title: Optional[str] = None
     company_name: str
