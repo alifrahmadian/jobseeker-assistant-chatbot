@@ -45,6 +45,7 @@ def insert_documents(documents):
         logger.info("Inserting documents to qdrant database...")
         vector_store = get_vector_store()
         vector_store.add_documents(documents)
+        logger.info("Documents sucessfully inserted!")
     except Exception as e:
         logger.error(f"Error while inserting documents: {e}")
         raise

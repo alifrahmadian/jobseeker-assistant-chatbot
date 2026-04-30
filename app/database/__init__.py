@@ -12,3 +12,7 @@ from .mysql_client import(
     insert_experiences,
     insert_educations
 )
+
+from .qdrant_client import(
+    insert_documents
+)
