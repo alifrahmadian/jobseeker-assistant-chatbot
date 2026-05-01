@@ -7,6 +7,7 @@ from .queries import (
 
 from .mysql_client import(
     get_connection,
+    create_tables,
     insert_resume,
     insert_skills,
     insert_experiences,
@@ -14,5 +15,6 @@ from .mysql_client import(
 )
 
 from .qdrant_client import(
+    create_collection,
     insert_documents
 )

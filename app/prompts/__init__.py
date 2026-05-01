@@ -1,3 +1,3 @@
-from app.prompts import(
+from app.prompts.extraction_prompt import(
     extraction_prompt
 )

@@ -15,17 +15,22 @@ def embed_and_insert():
         
         docs = [
             Document(
-                id = row['ID'],
                 page_content = row['Resume_str'],
                 metadata = {
-                    "resume_id": row['ID'],
+                    "resume_id": str(row['ID']),
                     "category": row['Category']
                 }
             )
             for _, row in df_processed.iterrows()
+            if pd.notna(row['Resume_str'])
         ]
         
-        insert_documents(docs)
+        batch_size = 100
+        for i in range(0, len(docs), batch_size):
+            batch = docs[i:i + batch_size]
+            insert_documents(batch)
+            logger.info(f"Inserted batch {i//batch_size + 1} of {len(docs)//batch_size + 1}")
+            
         logger.info("Embedding pipeline completed!")
     except Exception as e:
         logger.error(f"Error during embedding pipeline: {e}")

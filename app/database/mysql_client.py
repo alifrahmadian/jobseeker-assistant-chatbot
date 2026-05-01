@@ -100,11 +100,11 @@ def insert_experiences(connection, resume_id:str, experiences:list):
         for experience in experiences:
             values = (
                 resume_id,
-                experience["job_title"],
-                experience["company_name"],
-                experience["start_date"],
-                experience["end_date"],
-                experience["description"]
+                experience.job_title,
+                experience.company_name,
+                experience.start_date,
+                experience.end_date,
+                experience.description
             )
             cursor.execute(query, values)
             logger.debug(f"Inserting experience with resume_id {resume_id}")
@@ -127,9 +127,9 @@ def insert_educations(connection, resume_id:str, educations:list):
         for education in educations:
             values = (
                 resume_id,
-                education["degree"],
-                education["institution_name"],
-                education["year"]
+                education.degree,
+                education.institution,
+                education.year
             )
             cursor.execute(query, values)
             logger.debug(f"Inserting education with resume_id {resume_id}")

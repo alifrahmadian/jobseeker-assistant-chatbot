@@ -36,6 +36,7 @@ def extract_and_insert():
     conn = get_connection()
     logger.info("Starting extraction pipeline...")
     
+    
     try:
         for _, row in df_processed.iterrows():
             try:
@@ -46,6 +47,12 @@ def extract_and_insert():
                 logger.info(f"Processing resume {resume_id}")
                 
                 result = extract_resume(resume_text)
+                
+                cursor = conn.cursor()
+                cursor.execute("SELECT id FROM resumes WHERE id = %s", (resume_id,))
+                if cursor.fetchone():
+                    logger.debug(f"Resume {resume_id} already exists, skipping...")
+                    continue
                 
                 insert_resume(conn, resume_id, category, result.job_title)
                 insert_skills(conn, resume_id, result.skills)
