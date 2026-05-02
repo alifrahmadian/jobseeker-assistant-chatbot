@@ -1,3 +1,4 @@
 from app.schemas.resume_schema import (
-    Resume
+    Resume,
+    UserBackground
 )

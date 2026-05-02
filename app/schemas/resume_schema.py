@@ -18,4 +18,11 @@ class Resume(BaseModel):
     skills: List[str] = []
     experiences: List[Experience] = []
     educations: List[Education] = []
+
+class UserBackground(BaseModel):
+    job_title: Optional[str] = None
+    skills: List[str] = []
+    experiences: List[Experience] = []
+    educations: List[Education] = []
+    raw_text: Optional[str] = None
     
