@@ -49,3 +49,9 @@ def insert_documents(documents):
     except Exception as e:
         logger.error(f"Error while inserting documents: {e}")
         raise
+
+def get_retriever(k: int = 5):
+    vector_store = get_vector_store()
+    return vector_store.as_retriever(
+        search_kwargs={"k": k}
+    )
