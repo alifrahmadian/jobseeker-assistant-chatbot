@@ -3,6 +3,11 @@ from langfuse.callback import CallbackHandler
 from dotenv import load_dotenv
 
 import os
+import streamlit as st
+
+if hasattr(st, 'secrets'):
+    for key, value in st.secrets.items():
+        os.environ[key] = str(value)
 
 load_dotenv()
 
