@@ -3,6 +3,7 @@ from app.utils import (
     MYSQL_DB_USER, 
     MYSQL_DB_PASSWORD, 
     MYSQL_DB_DATABASE,
+    MYSQL_DB_PORT,
     logger
 )
 from app.database.queries import *
@@ -17,7 +18,8 @@ def get_connection():
             host=MYSQL_DB_HOST,
             user=MYSQL_DB_USER,
             password=MYSQL_DB_PASSWORD,
-            database=MYSQL_DB_DATABASE
+            database=MYSQL_DB_DATABASE,
+            port=int(MYSQL_DB_PORT)
         )
         
         logger.info("Successfully connected to MySQL database.")

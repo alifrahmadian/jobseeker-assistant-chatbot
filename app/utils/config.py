@@ -15,6 +15,7 @@ MYSQL_DB_HOST = os.getenv("MYSQL_DB_HOST")
 MYSQL_DB_USER = os.getenv("MYSQL_DB_USER")
 MYSQL_DB_PASSWORD = os.getenv("MYSQL_DB_PASSWORD")
 MYSQL_DB_DATABASE = os.getenv("MYSQL_DB_DATABASE")
+MYSQL_DB_PORT = os.getenv("MYSQL_DB_PORT", "3306")  # Default to 3306 if not set
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 

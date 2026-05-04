@@ -3,6 +3,7 @@ from .config import (
     MYSQL_DB_USER,
     MYSQL_DB_PASSWORD,
     MYSQL_DB_DATABASE,
+    MYSQL_DB_PORT,
     OPENAI_API_KEY,
     QDRANT_API_KEY,
     QDRANT_URL,
