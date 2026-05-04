@@ -1,6 +1,6 @@
 from typing import Annotated, Optional
 from typing_extensions import TypedDict
-from langgraph.graph.message import add_messages
+from langgraph.graph import add_messages
 
 class State(TypedDict):
     messages: Annotated[list, add_messages]
@@ -10,3 +10,4 @@ class State(TypedDict):
     rag_result: Optional[str]
     agent_used: Optional[str]
     cv_uploaded: Optional[bool]
+    cv_file_path: Optional[str]

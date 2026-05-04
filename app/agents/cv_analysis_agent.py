@@ -4,7 +4,7 @@ from app.prompts import CV_ANALYSIS_PROMPT
 from app.tools import rag_tool, sql_tool, cv_parser_tool
 
 from langchain.agents import create_agent
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, HumanMessage
 
 llm = load_llm()
 
@@ -13,7 +13,7 @@ def cv_analysis_agent(state: State) -> dict:
         logger.info("CV Analysis agent started...")
         
         user_background = state.get("user_background") or "No CV uploaded yet"
-        system_prompt = f"{CV_ANALYSIS_PROMPT}\nUser Background: {user_background}"
+        system_prompt = CV_ANALYSIS_PROMPT
         
         agent = create_agent(
             model=llm,
@@ -22,13 +22,36 @@ def cv_analysis_agent(state: State) -> dict:
         )
         
         response = agent.invoke(
-            state,
+            {
+                "messages": [
+                    HumanMessage(
+                        content=f"""
+        User Background:
+        {state.get("user_background")}
+
+        User Question:
+        {state["messages"][-1].content}
+        """
+                    )
+                ]
+            },
             config={"callbacks": [langfuse_handler]}
         )
         
+        messages = response["messages"]
+        
+        for msg in messages:
+            if hasattr(msg, "tool_calls") and msg.tool_calls:
+                for tool_call in msg.tool_calls:
+                    if tool_call["name"] == "cv_parser_tool":
+                        tool_output = tool_call.get("output")
+                        if tool_output:
+                            logger.info("Saving CV parsing result to state...")
+                            state["user_background"] = tool_output
+        
         logger.info("CV Analysis agent completed!")
         return {
-            "messages": response["messages"],
+            "messages": messages,
             "agent_used": "cv_analysis_agent"
         }
     except Exception as e:

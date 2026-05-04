@@ -4,6 +4,7 @@ from app.graphs import graph
 from app.tools.cv_parser_tool import cv_parser_tool
 import tempfile
 import os
+import json
 
 
 # ── Page Config 
@@ -201,9 +202,25 @@ def _render_cv_uploader():
                     tmp.write(uploaded_file.read())
                     tmp_path = tmp.name
                 result = cv_parser_tool.invoke(tmp_path)
-                st.session_state.user_background = result
+                
+                parsed = json.loads(result)
+                
+                formatted_background = f"""
+                    Job Title: {parsed.get('job_title')}
+
+                    Skills:
+                    {', '.join(parsed.get('skills', []))}
+
+                    Experience:
+                    {parsed.get('experiences')}
+
+                    Education:
+                    {parsed.get('educations')}
+                    """
+                    
+                st.session_state.user_background = formatted_background
+                st.session_state.cv_file_path = tmp_path
                 st.session_state.cv_uploaded = True
-                os.unlink(tmp_path)
                 st.success("✅ CV berhasil diproses!")
             except Exception as e:
                 st.error(f"❌ Gagal memproses CV: {e}")
@@ -322,6 +339,7 @@ def _invoke_graph(prompt: str):
             ],
             "user_background": st.session_state.user_background,
             "cv_uploaded": st.session_state.cv_uploaded,
+            "cv_file_path": st.session_state.get("cv_file_path")
         }
 
         result = graph.invoke(state_input)

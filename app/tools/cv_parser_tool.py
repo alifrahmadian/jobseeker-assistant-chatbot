@@ -6,6 +6,7 @@ from app.schemas import UserBackground
 from app.prompts import CV_PARSER_PROMPT
 
 import base64
+import os
 from io import BytesIO
 
 llm = load_llm(temperature=0.0, model="gpt-4o")
@@ -46,7 +47,10 @@ def cv_parser_tool(pdf_path: str) -> str:
     2. User wants their CV analyzed for skill gap analysis
     3. User wants their CV scored against other resumes
     """
-    
+    if not os.path.exists(pdf_path):
+        logger.error(f"PDF file not found at path: {pdf_path}")
+        return f"Error: PDF file not found at path: {pdf_path}"
+
     image_data = parse_pdf(pdf_path)
     
     try:
