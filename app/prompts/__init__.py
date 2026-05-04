@@ -13,3 +13,7 @@ from app.prompts.cv_parser_prompt import(
 from app.prompts.supervisor_prompt import(
     supervisor_prompt
 )
+
+from app.prompts.rag_prompt import(
+    rag_prompt
+)
