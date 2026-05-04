@@ -10,3 +10,5 @@ python-dotenv
 pandas
 streamlit
 pydantic
+Pillow
+pdf2image
