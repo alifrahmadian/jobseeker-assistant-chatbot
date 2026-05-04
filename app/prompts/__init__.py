@@ -9,3 +9,7 @@ from app.prompts.sql_prompt import(
 from app.prompts.cv_parser_prompt import(
     CV_PARSER_PROMPT
 )
+
+from app.prompts.supervisor_prompt import(
+    supervisor_prompt
+)
