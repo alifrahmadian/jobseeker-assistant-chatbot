@@ -293,6 +293,19 @@ def render_example_questions():
         with cols[i % 2]:
             if st.button(f"💬 {question}", use_container_width=True, key=f"example_{i}"):
                 st.session_state.messages.append({"role": "user", "content": question})
+
+                response_content, agent_used, rag_result = _invoke_graph(question)
+
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": response_content,
+                    "agent_used": agent_used,
+                    "rag_result": rag_result,
+                })
+
+                st.session_state.agent_used = agent_used
+                st.session_state.rag_result = rag_result
+
                 st.rerun()
 
 
