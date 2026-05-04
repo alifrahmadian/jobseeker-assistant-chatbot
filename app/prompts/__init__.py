@@ -3,7 +3,8 @@ from app.prompts.extraction_prompt import(
 )
 
 from app.prompts.sql_prompt import(
-    sql_prompt
+    sql_prompt,
+    sql_agent_prompt
 )
 
 from app.prompts.cv_parser_prompt import(

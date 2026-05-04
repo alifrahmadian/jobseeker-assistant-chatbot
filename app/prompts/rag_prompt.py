@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 
 RAG_PROMPT = """
-    You are a helpful career advisor asisstant. Answer the user's question based ONLY on the context provided from the resume database.
+    You are a helpful career advisor assistant. Answer the user's question based ONLY on the context provided from the resume database.
     
     Context from resume database:
     {context}
