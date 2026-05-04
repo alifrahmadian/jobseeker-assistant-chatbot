@@ -18,3 +18,7 @@ from app.prompts.supervisor_prompt import(
 from app.prompts.rag_prompt import(
     rag_prompt
 )
+
+from app.prompts.cv_analysis_prompt import(
+    CV_ANALYSIS_PROMPT
+)
