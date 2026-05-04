@@ -16,5 +16,6 @@ from .mysql_client import(
 
 from .qdrant_client import(
     create_collection,
-    insert_documents
+    insert_documents,
+    get_retriever
 )
