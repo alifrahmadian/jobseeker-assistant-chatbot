@@ -3,7 +3,7 @@ langchain-openai
 langchain-community
 langchain-qdrant
 langgraph
-langfuse
+langfuse==2.60.8
 langfuse-langchain
 qdrant-client
 mysql-connector-python
