@@ -4,7 +4,6 @@ langchain-community
 langchain-qdrant
 langgraph
 langfuse>=3.0.0
-langfuse-langchain
 qdrant-client
 mysql-connector-python
 python-dotenv
